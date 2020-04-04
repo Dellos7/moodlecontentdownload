@@ -15,6 +15,7 @@ $url = $_POST['moodle-base-url'];
 $username = $_POST['moodle-usuario'];
 $password = $_POST['moodle-password'];
 $moodleSiteData = new MoodleSiteData( $url, $username, $password );
+CookieService::setMoodleSiteUrl( $moodleSiteData->url );
 
 $loginSvc = new LoginService();
 try{

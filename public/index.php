@@ -5,7 +5,6 @@ use MoodleDownload\CookieService;
 error_reporting(E_ERROR);
 
 $dir = dirname( __DIR__ );
-
 require_once $dir . '/vendor/autoload.php';
 
 include "html/header.html";

@@ -16,8 +16,8 @@ let obtenerCookies = (...nombres) => {
     let mapaValores = {};
     for( let cookieVal of cookiesArr ){
         let cookieValArr = cookieVal.split("=");
-        if( nombres.includes(cookieValArr[0]) ){
-            mapaValores[cookieValArr[0]] = cookieValArr[1];
+        if( nombres.includes(cookieValArr[0].trim()) ){
+            mapaValores[cookieValArr[0].trim()] = cookieValArr[1];
         }
     }
     return mapaValores;
