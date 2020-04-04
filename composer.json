@@ -1,0 +1,17 @@
+{
+    "name": "dellos7/moodlecontentdownload",
+    "description": "An app that lets you download yout Moodle Course content",
+    "type": "project",
+    "authors": [
+        {
+            "name": "David López Castellote",
+            "email": "david.lopez.castellote@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MoodleDownload\\" : "src"
+        }
+    }
+}

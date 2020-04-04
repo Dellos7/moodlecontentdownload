@@ -1,0 +1,17 @@
+*{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 62.5%;
+    --color-primary: #068898;
+    --color-secondary: #00BCD4;
+    --color-tertiary: #ff5722;
+    --color-white: #fefefe;
+    --box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+html{
+    box-sizing: border-box;
+}
+
+.invisible{
+    display: none;
+}

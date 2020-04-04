@@ -1,0 +1,42 @@
+nav.nav{
+    font-size: 4rem;
+}
+
+nav.nav ul{
+    list-style: none;
+    margin: 0;
+    padding-inline-start: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav.nav ul li{
+    padding: 1rem;
+}
+
+nav.nav ul li a{
+    font-size: 2rem;
+    text-decoration: none;
+    transition: all .2s linear;
+    border-bottom: 1px solid transparent;
+}
+
+nav.nav ul li a:link{
+    color: inherit;
+}
+nav.nav ul li a:visited{
+    color: inherit;
+}
+nav.nav ul li a:hover{
+    color: inherit;
+    border-color: black;
+}
+nav.nav ul li a:active{
+    color: inherit;
+}
+
+h1{
+    font-size: 4rem;
+    text-align: center;
+    color: var(--color-primary);
+}
