@@ -11,6 +11,7 @@ class HttpService{
                 $url .= "&{$paramName}={$paramValue}";
             }
         }
+        echo $url . "\n";
         $res = file_get_contents( $url );
         if( !$res ){
             return $res;

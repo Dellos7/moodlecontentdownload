@@ -20,6 +20,7 @@ class LoginService{
             'password' => $data->password,
             'service' => 'moodle_mobile_app'
         ]);
+        print_r($res);
         if( !$res ){
             throw new DatosIncorrectosException();
         }

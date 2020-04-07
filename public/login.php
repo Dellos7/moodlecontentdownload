@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ERROR);
+//error_reporting(E_ERROR);
 
 // No entiendo por qué esto es necesario otra vez
 $dir = dirname( __DIR__ );
@@ -21,6 +21,7 @@ $loginSvc = new LoginService();
 try{
     $token = $loginSvc->login($moodleSiteData);
     if( $token ){
+        CookieService::removeUserid();
         CookieService::setToken( $token );
         header( "Location: index.php" );
     }

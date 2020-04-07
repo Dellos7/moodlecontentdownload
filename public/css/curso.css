@@ -1,3 +1,43 @@
-.seccion p{
+.seccion__titulo-wrapper h3{
+    display: inline-block;
+}
+
+.seccion__titulo-wrapper label{
+    margin-left: 1rem;
+    font-size: 2rem;
+    color: var(--color-tertiary);
+}
+
+.seccion__titulo-wrapper label a:hover{
+    border-color: var(--color-tertiary);
+    cursor: pointer;
+}
+
+form.form__descargar{
+    display: inline-block;
+}
+
+.seccion__item{
+    padding-left: 2rem;
+    margin: 1rem 0;
+}
+
+.seccion__item label{
     font-size: 1.5rem;
 }
+
+.seccion__item a:hover{
+    border-color: black;
+    cursor: pointer;
+}
+
+a.seccion__item-descargar{
+    color: var(--color-tertiary);
+    margin-left: 1rem;
+}
+
+a.seccion__item-descargar:hover{
+    border-color: var(--color-tertiary);
+    cursor: pointer;
+}
+
