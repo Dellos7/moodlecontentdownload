@@ -44,7 +44,7 @@ form.login-form{
 .form__linea button{
     font-size: 2rem;
     flex: unset;
-    /*width: 15rem;*/
+    min-width: 15rem;
     background-color: var(--color-primary);
     color: var(--color-white);
     border: 3px solid var(--color-tertiary);

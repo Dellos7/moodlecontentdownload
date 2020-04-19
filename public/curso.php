@@ -22,10 +22,21 @@ $extensionesUrlsDescargables = [ '.pdf', '.doc', '.docx', '.odt', '.ods', '.zip'
 $cursosSvc = new CursosService();
 $contenidoCurso = $cursosSvc->getContenidosCurso( $idCurso );
 
+//session_unset(); // Peligroso --> deberíamos meter todo en una variable y eliminar solo esa variable, no toda la sesión
 session_start();
+limpiarVariablesSesion();
+
+function limpiarVariablesSesion(){
+    foreach( $_SESSION as $key=>$value ){
+        if( strpos( $key, 'seccion-' ) !== false || strpos( $key, 'carpeta-' ) !== false ){
+            unset($_SESSION[$key]);
+        }
+    }
+}
 
 function generarUrlsSeccion( $seccion ){
     global $token;
+    global $extensionesUrlsDescargables;
     $json = [];
     if( $seccion->modules ){
         foreach( $seccion->modules as $mod ){
@@ -40,7 +51,18 @@ function generarUrlsSeccion( $seccion ){
                 case "url":
                     if( $mod->contents ){
                         foreach( $mod->contents as $content ){
-                            $json[] = [ "url", basename( $content->fileurl ), $content->fileurl ];
+                            $descargable = false;
+                            foreach( $extensionesUrlsDescargables as $extension ){
+                                $descargable = strpos( $content->fileurl, $extension );
+                                if( $descargable ){
+                                    break;
+                                }
+                            }
+                            if( $descargable ){
+                                $json[] = [ "url", basename( $content->fileurl ), $content->fileurl ];
+                            } else{
+                                $json[] = [ "url_nodownload", $content->filename, $content->fileurl ];
+                            }
                         }
                     }
                     break;
@@ -50,10 +72,18 @@ function generarUrlsSeccion( $seccion ){
                         $json[] = [ "folder", $mod->name, $folder ];
                     }
                     break;
+                case "page":
+                    if( $mod->contents ){
+                        foreach( $mod->contents as $content ){
+                            $json[] = [ "resource", $mod->name . ".html", $content->fileurl . "&token=" . $token ];
+                        }
+                    }
+                    break;
             }
         }
     }
-    $_SESSION['seccion-' . $seccion->id] = urlencode( serialize( $json ) );
+    //$_SESSION['seccion-' . $seccion->id] = urlencode( serialize( $json ) );
+    $_SESSION['seccion-' . $seccion->id] = [ 'nombre' => $seccion->name, 'urls' => urlencode( serialize( $json ) ) ];
     return $json;
 }
 
@@ -76,7 +106,7 @@ function comprobarSeccionDescargable( $seccion ){
     if($seccion->modules){
         foreach( $seccion->modules as $modulo ){
             $ext = true;
-            if( $modulo->modname == 'url' ){
+            /*if( $modulo->modname == 'url' ){
                 // Comprobar si la extensión del archivo es descargable
                 foreach( $extensionesUrlsDescargables as $extension ){
                     $ext &= strpos( $modulo->contents[0]->fileurl, $extension );
@@ -84,7 +114,7 @@ function comprobarSeccionDescargable( $seccion ){
                         break;
                     }
                 }
-            }
+            }*/
             $descargable |= ( in_array( $modulo->modname, $modulosDescargables ) && $ext );
             if( $modulo->modname == 'folder' ){
                 $descargable = comprobarCarpetaDescargable( $modulo );
@@ -160,20 +190,22 @@ foreach( $contenidoCurso as $seccion ){
                             generarUrlsCarpeta( $modulo );
                         }
                     ?>
-                        <label><?=$modulo->name?></label>
+                        <label><a onclick="mostrarOcultarContenidosCarpeta(<?=$modulo->id?>)"><?=$modulo->name?></a></label>
                         <form id="form-mod-<?=$modulo->id?>" class="form__descargar" method="post" action="downloadzip.php">
                             <input type="hidden" name="tipoDescarga" value="carpeta">
                             <input type="hidden" name="idCarpeta" value="<?=$modulo->id?>">
                             <input type="hidden" name="nombreCarpeta" value="<?=$modulo->name?>">
                             <label><a class="seccion__item-descargar" onclick="document.getElementById('form-mod-<?=$modulo->id?>').submit();">Descargar carpeta</a></label>
                         </form>
+                        <div class="contenidos-carpeta invisible" id="contenidos-carpeta-<?=$modulo->id?>">
+                            <?php
+                                foreach($modulo->contents as $content){?>
+                                    <div>
+                                        <label><a href="<?=$content->fileurl?>&token=<?=$token?>" target="_blank"><?=$content->filepath?><?=$content->filename?></a></label>
+                                    </div>
+                            <?php }?>
+                        </div>
                         <?php break;
-                    case "":?>
-                        <?php break;
-                    case "":?>
-                        <?php break;
-                    case "":?>
-                    <?php break;
                     default:?>
                         <label><?=$modulo->name?></label>
                 <?php }?>

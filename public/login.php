@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(E_ERROR);
+error_reporting(E_ERROR);
 
 // No entiendo por qué esto es necesario otra vez
 $dir = dirname( __DIR__ );
@@ -26,5 +26,14 @@ try{
         header( "Location: index.php" );
     }
 } catch( DatosIncorrectosException $e ){
-    echo $e->getMessage();
+    include "html/header.html";
+    echo "<p class='datos-incorrectos'>" . $e->getMessage() . "</p>";
+    echo <<<EOF
+<form method="GET" action="index.php">
+    <div class="form__linea">
+        <button type="submit">Volver</button>
+    </div>
+</form>
+EOF;
+    include "html/footer.html";
 }

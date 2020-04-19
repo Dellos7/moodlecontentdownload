@@ -20,9 +20,13 @@ class LoginService{
             'password' => $data->password,
             'service' => 'moodle_mobile_app'
         ]);
-        print_r($res);
-        if( !$res ){
-            throw new DatosIncorrectosException();
+        //print_r($res);
+        if( !$res || $res->error ){
+            if( $res ){
+                throw new DatosIncorrectosException( $res->error );
+            } else{
+                throw new DatosIncorrectosException();
+            }
         }
         $this->token = $res->token;
         return $this->token;

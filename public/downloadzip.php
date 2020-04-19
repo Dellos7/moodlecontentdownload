@@ -1,6 +1,9 @@
 <?php
 
-ob_start();
+ini_set('memory_limit', '2048M');
+set_time_limit(0);
+
+//ob_start();
 //error_reporting(E_ERROR);
 
 $zipTmpDir = dirname( __DIR__ ) . '/zips';
@@ -42,6 +45,7 @@ function generarZipSeccion( $urls ){
     global $zipTmpDir;
     $hash = generarHash() . ".zip";
     $zip = crearZip( $hash );
+    $contenidoFichUrls = '';
     foreach( $urls as $urlData ){
         $tipo = $urlData[0];
         if( $tipo == 'folder' ){
@@ -49,12 +53,17 @@ function generarZipSeccion( $urls ){
             $folderZipFile = file_get_contents( $zipTmpDir . "/" . $folderZip );
             $zip->addFromString( $urlData[1] . ".zip", $folderZipFile );
             unlink( $zipTmpDir . "/" . $folderZip ); // Eliminamos el zip
+        } else if( $tipo == 'url_nodownload' ){
+            $contenidoFichUrls .= "{$urlData[1]} -> {$urlData[2]}\n";
         } else{
             $filename = $urlData[1];
             $url = $urlData[2];
             $file = file_get_contents( $url );
             $zip->addFromString( $filename, $file );
         }
+    }
+    if( $contenidoFichUrls ){
+        $zip->addFromString( 'urls.txt', $contenidoFichUrls );
     }
     $zip->close();
     return $hash;
@@ -66,11 +75,11 @@ function generarZipCursoCompleto(){
     $zip = crearZip( $hash );
     foreach( $_SESSION as $key=>$value ){
         if( strpos( $key, 'seccion-' ) !== false ){
-            $datosSeccion = unserialize( urldecode( $value ) );
+            $nombreSeccion = $value['nombre'];
+            $datosSeccion = unserialize( urldecode( $value['urls'] ) );
             $seccionZip = generarZipSeccion( $datosSeccion );
             $seccionZipFile = file_get_contents( $zipTmpDir . "/" . $seccionZip );
-            //TODO: cambiar el nombre de la sección
-            $zip->addFromString( $key . ".zip", $seccionZipFile );
+            $zip->addFromString( $nombreSeccion. ".zip", $seccionZipFile );
             unlink( $zipTmpDir . "/" . $seccionZip ); // Eliminamos el zip
         }
     }
@@ -79,6 +88,8 @@ function generarZipCursoCompleto(){
 }
 
 function descargarZip( $zipDir, $nombreZip, $nombreZipDescarga ){
+    // Si el nombre lleva una "," falla la descarga, por lo tanto lo reemplazamos
+    $nombreZipDescarga = preg_replace( '/,/', ' ', $nombreZipDescarga );
     header( "Content-Type: application/zip" );
     header( "Content-Disposition: attachment; filename={$nombreZipDescarga}.zip" );
     header( "Content-Length: " . filesize( $nombreZip ) );
@@ -102,9 +113,10 @@ switch( $tipoDescarga ){
     case "seccion":
         $idSeccion = $_POST['idSeccion'];
         $nombreSeccion = $_POST['nombreSeccion'];
-        $urls = unserialize( urldecode( $_SESSION['seccion-' . $idSeccion] ) );
+        $urls = unserialize( urldecode( $_SESSION['seccion-' . $idSeccion]['urls'] ) );
         $nombreZip = generarZipSeccion( $urls );
         descargarZip( $zipTmpDir, $nombreZip, $nombreSeccion );
+        echo $nombreZip . "\n";
         break;
     case "carpeta":
         $idCarpeta = $_POST['idCarpeta'];

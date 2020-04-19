@@ -41,3 +41,11 @@ a.seccion__item-descargar:hover{
     cursor: pointer;
 }
 
+.contenidos-carpeta{
+    padding: 1.5rem;
+    border: 1px solid;
+}
+
+.contenidos-carpeta h4{
+    font-size: 2rem;
+}
