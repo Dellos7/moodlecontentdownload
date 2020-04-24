@@ -4,16 +4,19 @@ Aplicación web escrita en PHP que permite conectarse a un aula virtual de Moddl
 
 ## Requisitos
 
+Debemos tener instalado:
+
 - [Git](https://git-scm.com/). Si descargamos el proyecto utilizando `git clone`
-- PHP 7
+- PHP 7 (ej. con [XAMPP](https://www.apachefriends.org/es/index.html))
 - [Composer](https://getcomposer.org/)
 
 ## Descargar e instalar
 
 1. Descargar el .zip de este proyecto de Github o bien ejecutar: `git clone https://github.com/Dellos7/moodlecontentdownload.git`
-
 2. Dentro de la carpeta del proyecto ejecutar Composer: `composer install`
 3. Lanzar servidor local desplegando la carpeta **public**:  `php -S localhost:8080 -t public/`
+
+Ahora, en un navegador abrir la url [http://localhost:8080](http://localhost:8080), introducir la URL raíz del aula virtual donde está el moodle del curso que queremos descargar, usuario y contraseña.
 
 ## Ejemplo de funcionamiento y uso
 
