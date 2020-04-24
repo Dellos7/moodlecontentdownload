@@ -8,6 +8,7 @@ class HttpService{
         if( $params ){
             $url .= '?';
             foreach( $params as $paramName=>$paramValue ){
+                $paramValue = urlencode($paramValue);
                 $url .= "&{$paramName}={$paramValue}";
             }
         }
