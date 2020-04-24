@@ -15,9 +15,9 @@ Aplicación web escrita en PHP que permite conectarse a un aula virtual de Moddl
 2. Dentro de la carpeta del proyecto ejecutar Composer: `composer install`
 3. Lanzar servidor local desplegando la carpeta **public**:  `php -S localhost:8080 -t public/`
 
-## Ejemplo de funcionamiento
+## Ejemplo de funcionamiento y uso
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Q5XmedD5WZc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Mira el vídeo](https://img.youtube.com/vi/Q5XmedD5WZc/hqdefault.jpg)](https://youtu.be/Q5XmedD5WZc)
 
 ### Notas importantes
 
