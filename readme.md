@@ -24,5 +24,7 @@ Ahora, en un navegador abrir la url [http://localhost:8080](http://localhost:808
 
 ### Notas importantes
 
-- En el campo de URL se debe introducir la URL a la página raíz del moodle que se desea descargar
-- Sólo funcionará para aquellos moodle que tengan habilitados los servicios web para la app del móvil y los servicios REST
+* En el campo de URL se debe introducir la URL a la página raíz del moodle que se desea descargar
+* Sólo funcionará para aquellos moodle que tengan habilitados los servicios web para la app del móvil y los servicios REST
+    * [Habilitar servicios web móviles en Moodle](https://docs.moodle.org/all/es/Servicios_web_m%C3%B3viles)
+    * [Habilitar el protocolo REST en Moodle](https://docs.moodle.org/34/en/Using_web_services#Enabling_protocols)
