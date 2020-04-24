@@ -14,3 +14,12 @@ Aplicación web escrita en PHP que permite conectarse a un aula virtual de Moddl
 
 2. Dentro de la carpeta del proyecto ejecutar Composer: `composer install`
 3. Lanzar servidor local desplegando la carpeta **public**:  `php -S localhost:8080 -t public/`
+
+## Ejemplo de funcionamiento
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Q5XmedD5WZc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Notas importantes
+
+- En el campo de URL se debe introducir la URL a la página raíz del moodle que se desea descargar
+- Sólo funcionará para aquellos moodle que tengan habilitados los servicios web para la app del móvil y los servicios REST
