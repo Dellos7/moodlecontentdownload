@@ -153,13 +153,21 @@ function comprobarCarpetaDescargable( $carpeta ){
 </div>
 <?php
 foreach( $contenidoCurso as $seccion ){
+    //var_dump($seccion);
 ?>
     <div class="seccion">
         <div class="seccion__titulo-wrapper">
+            <?php
+            if( !trim($seccion->name) ){
+                $seccion->name = strip_tags($seccion->summary);
+            }
+            ?>
             <h3><?=$seccion->name?></h3>
+            
             <?php
                 $descargable = comprobarSeccionDescargable( $seccion );
                 if( $descargable ){
+                    //print_r($seccion);
                     generarUrlsSeccion($seccion);
                     ?>
                     <form id="form-<?=$seccion->id?>" class="form__descargar" method="post" action="downloadzip.php">
