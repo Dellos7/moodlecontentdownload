@@ -22,6 +22,10 @@ include "html/header.html";
     }
 ?>
 
-<?php foreach($cursos as $curso){?>
+<?php foreach($cursos as $curso){
+        if( !$curso->displayname ){
+            $curso->displayname = $curso->fullname;
+        }
+    ?>
     <h3><a href="curso.php?id=<?=$curso->id?>&nombre=<?=$curso->shortname?>. <?=$curso->displayname?>"><span class="overline"><?=$curso->shortname?></span>. <?=$curso->displayname?></a></h3>
 <?php }?>
