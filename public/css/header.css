@@ -7,7 +7,7 @@ nav.nav ul{
     margin: 0;
     padding-inline-start: 0;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 nav.nav ul li{
