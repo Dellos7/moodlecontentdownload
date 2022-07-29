@@ -30,7 +30,7 @@ Para **instalar composer**, simplemente descargamos el instalador para Windows d
 
 ## Descargar la aplicación y ejecutarla
 
-1. Descargar el archivo .zip de este proyecto de Github o bien ejecutar: `git clone https://github.com/Dellos7/moodlecontentdownload.git`
+1. Descargar el [archivo .zip](https://github.com/Dellos7/moodlecontentdownload/archive/refs/heads/master.zip) de este proyecto de Github o bien ejecutar: `git clone https://github.com/Dellos7/moodlecontentdownload.git`
 2. Dentro de la carpeta del proyecto ejecutar Composer: `composer install`
 3. Lanzar servidor local desplegando la carpeta **public**:  `php -S localhost:8080 -t public/` (*en Windows esto se haría abriendo el programa llamado **Símbolo del sistema***)
 
