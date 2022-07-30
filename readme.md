@@ -31,8 +31,9 @@ Para **instalar composer**, simplemente descargamos el instalador para Windows d
 ## Descargar la aplicación y ejecutarla
 
 1. Descargar el [archivo .zip](https://github.com/Dellos7/moodlecontentdownload/archive/refs/heads/master.zip) de este proyecto de Github o bien ejecutar: `git clone https://github.com/Dellos7/moodlecontentdownload.git`
-2. Dentro de la carpeta del proyecto ejecutar Composer: `composer install`
-3. Lanzar servidor local desplegando la carpeta **public**:  `php -S localhost:8080 -t public/` (*en Windows esto se haría abriendo el programa llamado **Símbolo del sistema***)
+2. Con una terminal nos situamos dentro de la carpeta del proyecto (*en Windows esto se haría abriendo el programa llamado **Símbolo del sistema***). Por ejemplo, si la ruta de la carpeta de mi proyecto es `C:\Users\David\Documents\moodlecontentdownload-master` debo ejecutar en la terminal: `cd C:\Users\David\Documents\moodlecontentdownload-master`
+3. Dentro de la carpeta del proyecto ejecutar Composer: `composer install`
+4. Lanzar servidor local desplegando la carpeta **public**:  `php -S localhost:8080 -t public/` 
 
 Ahora, en un navegador abrir la url [http://localhost:8080](http://localhost:8080), introducir la **URL raíz** (NO la del curso) del aula virtual donde está el moodle del curso que queremos descargar, usuario y contraseña.
 
