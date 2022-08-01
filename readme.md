@@ -1,6 +1,8 @@
 # Descargar aula virtual Moodle
 
-Aplicación web escrita en PHP que permite conectarse a un aula virtual de Moddle y descargar el curso completo en un archivo comprimido (.zip) o bien descargar de forma selectiva secciones, archivos o carpetas de cada una de las secciones.
+Aplicación web escrita en PHP que permite descargar todos los contenidos de un aula virtual de Moodle con un solo clic!
+
+Lo que hace es conectarse a un aula virtual de Moddle utilizando las credenciales del usuario y permite descargar el curso completo en un archivo comprimido (.zip) o bien descargar de forma selectiva secciones, archivos o carpetas de cada una de las secciones.
 
 ## Requisitos
 
